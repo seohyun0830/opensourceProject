@@ -21,7 +21,7 @@ function WritePage() {
     { id: 5, name: "빠오즈푸" }
   ];
 
-  const tags = ["#혼밥하기 좋아요", "#든든해요", "#가성비", "#친절해요", "#카공하기 좋아요"];
+  const tags = ["#혼밥", "#든든해요", "#가성비", "#친절해요", "#카공하기 좋아요", "#분위기가 좋아요", "#조용해요","#저렴해요" ,"#양이 많아요","#웨이팅 없어요"];
 
   const toggleTag = (tag) => {
     if (selectedTags.includes(tag)) {

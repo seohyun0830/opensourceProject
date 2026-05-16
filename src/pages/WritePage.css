@@ -1,0 +1,161 @@
+/* 전체 컨테이너 */
+.write-container {
+  padding: 20px;
+  text-align: left;
+  position: relative;
+}
+
+/* 뒤로가기 버튼 */
+.back-button {
+  border: none;
+  background: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+/* 가게 선택 섹션 */
+.store-selector {
+  margin-bottom: 20px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+}
+
+.store-selector-header {
+  margin: 0 0 10px 0;
+  font-weight: bold;
+}
+
+.store-selector-body {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.store-name-display {
+  font-size: 1.1rem;
+}
+
+.store-name-display.placeholder {
+  color: #aaa;
+}
+
+.find-store-button {
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: 1px solid #2db400;
+  color: #2db400;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+/* 별점 섹션 */
+.rating-section {
+  margin-bottom: 20px;
+}
+
+.stars {
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* 태그 섹션 */
+.tag-section {
+  margin-bottom: 20px;
+}
+
+.tag-list {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+
+.tag-button {
+  padding: 5px 10px;
+  border-radius: 15px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  background-color: #fff;
+  transition: all 0.2s;
+}
+
+.tag-button.selected {
+  background-color: #2db400;
+  color: #fff;
+  border-color: #2db400;
+}
+
+/* 리뷰 입력창 */
+.review-textarea {
+  width: 100%;
+  height: 100px;
+  border-radius: 10px;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid #ddd;
+  font-family: inherit;
+}
+
+/* 등록 버튼 */
+.submit-button {
+  width: 100%;
+  padding: 15px;
+  background-color: #2db400;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  margin-top: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* 모달 스타일 */
+.modal-overlay {
+  position: fixed; /* 전체 화면을 덮기 위해 fixed로 변경 */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 15px;
+  width: 80%;
+  max-width: 400px;
+  max-height: 70%;
+  overflow-y: auto;
+}
+
+.store-list {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+}
+
+.store-item {
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+  text-align: center;
+}
+
+.store-item:hover {
+  background-color: #f9f9f9;
+}
+
+.close-modal-button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  background-color: #eee;
+  border-radius: 10px;
+  cursor: pointer;
+}

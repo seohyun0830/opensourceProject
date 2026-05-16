@@ -68,3 +68,19 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+2026-05-15 PM 17:30, 윤진
+- React를 통한 프론트엔드 아키텍쳐 설계
+    : 페이지 구분(Main, Write)과 데이터 바인딩(ReviewCard) 구분 설계 완료
+- 라우팅 시스템 구축
+    : react-router-dom을 이용해 메인페이지와 리뷰작성 페이지 간의 이동 구현
+    => npm start 이전에 npm install react-router-dom 을 통해 라우팅 라이브러리 설치 필수
+- 주요 기능 구현
+    : 검색창 및 지도, 카테고리 배치 완료
+    : Main 페이지 우측 하단의 플로팅 버튼을 통해 Write 페이지로의 이동 구현
+    : Write 페이지 왼쪽 상단의 뒤로가기 버튼을 통해 Main 페이지로의 이동 구현
+- 구현 예정
+    : 지도 검색 기능
+    : 실시간 검색어 입력에 따른 지도 API 연동 기능
+    : 리뷰 등록 및 실시간 리뷰 피드 업데이트 기능

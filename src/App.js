@@ -1,13 +1,19 @@
-import NaverMap from "./NaverMap";
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import MainPage from './pages/MainPage';
+import WritePage from './pages/WritePage';
 
 function App() {
   return (
-    <div>
-      <h1 style={{ textAlign: "center", color: "#2db400" }}>
-        👑 대장님의 맛집 지도 👑
-      </h1>
-      <NaverMap />
-    </div>
+    <Router>
+      <Routes>
+        {/*주소 / 일때 메인*/}
+        <Route path="/" element={<MainPage />} />
+
+        {/*주소 write 일때 작성*/}
+        <Route path="/write" element={<WritePage />} />
+      </Routes>
+    </Router>
   );
 }
 

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './WritePage.css'; 
+import yellowStar from '../assets/노란별.png';
+import grayStar from '../assets/회색별.png';
 
 function WritePage() {
   const navigate = useNavigate();
@@ -66,9 +68,13 @@ function WritePage() {
         <p>별점을 선택해 주세요</p>
         <div className="stars">
           {[1, 2, 3, 4, 5].map((num) => (
-            <span key={num} onClick={() => setRating(num)}>
-              {num <= rating ? "⭐" : "☆"}
-            </span>
+            <img
+              key={num}
+              src={num <= rating ? yellowStar : grayStar}
+              alt={`${num}점`}
+              onClick={() => setRating(num)}
+              style={{ width: '32px', height: '32px', cursor: 'pointer' }}
+            />
           ))}
         </div>
       </div>

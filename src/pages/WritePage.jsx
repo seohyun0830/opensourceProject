@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import './WritePage.css'; 
 import yellowStar from '../assets/노란별.png';
 import grayStar from '../assets/회색별.png';
+import StoreSelectModal from '../components/StoreSelectModal';
 
 function WritePage() {
   const navigate = useNavigate();
@@ -13,6 +14,10 @@ function WritePage() {
   const [selectedTags, setSelectedTags] = useState([]);
   const [reviewText, setReviewText] = useState("");
 
+  const [imageFiles, setImageFiles] = useState([]); // 백엔드 보낼 용도
+  const [imagePreviews, setImagePreviews] = useState([]); // 화면에 보여줄 용도
+  // 일단은 하드코딩
+  // 나중에 db랑 연결
   const storeList = [
     { id: 1, name: "맥도날드 세종대점" },
     { id: 2, name: "은혜떡볶이" },
@@ -29,6 +34,33 @@ function WritePage() {
     } else {
       setSelectedTags([...selectedTags, tag]);
     }
+  };
+
+  const handleImageChange = (e) => {
+    const files = Array.from(e.target.files);
+    
+    if (imageFiles.length + files.length > 5) {
+      alert("사진은 최대 5장까지만 등록할 수 있습니다.");
+      return;
+    }
+
+    const newFiles = [...imageFiles];
+    const newPreviews = [...imagePreviews];
+
+    files.forEach((file) => {
+      newFiles.push(file);
+      newPreviews.push(URL.createObjectURL(file));
+    });
+
+    setImageFiles(newFiles);
+    setImagePreviews(newPreviews);
+  };
+
+  const handleDeleteImage = (index) => {
+    URL.revokeObjectURL(imagePreviews[index]);
+
+    setImageFiles(imageFiles.filter((_, i) => i !== index));
+    setImagePreviews(imagePreviews.filter((_, i) => i !== index));
   };
 
   const handleSubmit = () => {
@@ -95,6 +127,43 @@ function WritePage() {
         </div>
       </div>
 
+      {/* 이미지 미리보기 */}
+      <div className="image-upload-section">
+        <input 
+          type="file" 
+          type="file" 
+          accept="image/*" 
+          id="review-image-input"
+          multiple 
+          onChange={handleImageChange} 
+          style={{ display: 'none' }} 
+          disabled={imageFiles.length >= 5} 
+        />
+        
+        <div className="image-upload-wrapper" style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+          {imageFiles.length < 5 && (
+            <label htmlFor="review-image-input" className="image-upload-label">
+              <span className="upload-icon">📸</span>
+              <span className="upload-text">사진 추가<br/>({imageFiles.length}/5)</span>
+            </label>
+          )}
+
+          {imagePreviews.map((preview, index) => (
+            <div key={index} className="preview-container" style={{ position: 'relative' }}>
+              <img src={preview} alt={`리뷰 미리보기 ${index + 1}`} className="image-preview" />
+              <button 
+                type="button"
+                className="delete-image-btn" 
+                onClick={() => handleDeleteImage(index)}
+                style={{ position: 'absolute', top: '5px', right: '5px' }}
+              >
+                ❌
+              </button>
+            </div>
+          ))}
+        </div>
+      </div>
+
       {/* 리뷰 입력 */}
       <textarea
         className="review-textarea"
@@ -105,29 +174,11 @@ function WritePage() {
 
       <button className="submit-button" onClick={handleSubmit}>리뷰 등록하기</button>
 
-      {/* 가게 찾기 모달 */}
-      {isModalOpen && (
-        <div className="modal-overlay">
-          <div className="modal-content">
-            <h3>가게 선택하기</h3>
-            <ul className="store-list">
-              {storeList.map(store => (
-                <li 
-                  key={store.id} 
-                  className="store-item"
-                  onClick={() => {
-                    setSelectedStore(store);
-                    setIsModalOpen(false);
-                  }}
-                >
-                  {store.name}
-                </li>
-              ))}
-            </ul>
-            <button className="close-modal-button" onClick={() => setIsModalOpen(false)}>닫기</button>
-          </div>
-        </div>
-      )}
+      <StoreSelectModal 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)} 
+        onSelectStore={setSelectedStore} 
+      />
     </div>
   );
 }

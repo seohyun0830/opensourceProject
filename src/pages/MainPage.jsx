@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import NaverMap from "../NaverMap";
 import ReviewCard from '../components/ReviewCard';
+import './MainPage.css'; 
 
 const ReviewDB = [
     {
@@ -24,42 +25,42 @@ function MainPage() {
     const navigate = useNavigate();
 
     return (
-        <div style={{ padding: '20px', backgroundColor: '#F5F5F5', minHeight: '100vh', textAlign: 'center' }}>
+        <div className="main-container">
             {/*헤더*/}
-            <h1 style={{ textAlign: "center", color: "#2db400", marginBottom: '20px' }}>
-                리뷰 메인페이지
+            <h1 className="main-title">
+                세종대 근처 맛집
             </h1>
 
             {/*검색*/}
-            <div style={{ marginBottom: '20px' }}>
-                <input type="text" placeholder="🔍 식당을 검색하세요" style={searchStyle} />
+            <div className="search-container">
+                <input type="text" placeholder="🔍 식당을 검색하세요" className="search-input" />
             </div>
 
             {/*카테고리*/}
-            <div style={gridStyle}>
+            <div className="category-grid">
                 {["든든한 한끼", "간편한 한끼", "글로벌 한끼", "카공 카페", "감성 카페", "회식/술자리", "기타"].map(cat => (
-                    <button key={cat} style={btnStyle}>{cat}</button>
+                    <button key={cat} className="category-btn">{cat}</button>
                 ))}
             </div>
 
             {/*지도*/}
-            <div style={mapContainerStyle}>
+            <div className="map-container">
                 <NaverMap />
             </div>
 
             {/*리뷰작성 버튼*/}
             <button
                 onClick={() => navigate('/write')}
-                style={fabStyle}
+                className="fab-button"
             >
                 📝 리뷰 작성
             </button>
 
             {/*실시간 피드*/}
-            <h3 style={{ textAlign: 'left', marginLeft: '10px' }}>⭐ 실시간 뜨고 있는 맛집</h3>
+            <h3 className="feed-title">⭐ 실시간 뜨고 있는 맛집</h3>
             {ReviewDB.map(review => (
                 <ReviewCard
-                    key={review.Rid}
+                    key={review.Reviewid} // 🐛 오타 수정: review.Rid -> review.Reviewid
                     storeName={review.storeName}
                     rating={review.rating}
                     reviewText={review.reviewText}
@@ -69,26 +70,5 @@ function MainPage() {
         </div>
     );
 }
-
-//스타일 정의들
-const searchStyle = { width: '90%', padding: '12px', borderRadius: '25px', border: '1px solid #000' };
-const gridStyle = { display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '8px', marginBottom: '20px' };
-const btnStyle = { padding: '8px 4px', fontSize: '0.75rem', borderRadius: '15px', border: '1px solid #ccc', backgroundColor: '#f5f8c8' };
-const mapContainerStyle = { height: '300px', borderRadius: '12px', overflow: 'hidden', marginBottom: '25px', border: '1px solid #ccc' };
-
-const fabStyle = {
-    position: 'fixed',
-    bottom: '30px',
-    right: '20px',
-    padding: '15px 25px',
-    backgroundColor: '#2db400',
-    color: 'white',
-    borderRadius: '30px',
-    border: 'none',
-    boxShadow: '0 4px 10px rgba(0,0,0,0.3)',
-    fontWeight: 'bold',
-    cursor: 'pointer',
-    zIndex: 1000
-};
 
 export default MainPage;

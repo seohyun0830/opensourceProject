@@ -1,0 +1,85 @@
+/* 전체 컨테이너 */
+.main-container {
+    padding: 20px;
+    background-color: #F5F5F5;
+    min-height: 100vh;
+    text-align: center;
+    position: relative; /* FAB(플로팅버튼) 기준점 유지를 위해 권장 */
+}
+
+/* 헤더 제목 */
+.main-title {
+    text-align: center;
+    color: #2db400;
+    margin-bottom: 20px;
+}
+
+/* 검색창 컨테이너 및 인풋 */
+.search-container {
+    margin-bottom: 20px;
+}
+
+.search-input {
+    width: 90%;
+    padding: 12px;
+    border-radius: 25px;
+    border: 1px solid #000;
+}
+
+/* 카테고리 그리드 및 버튼 */
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.category-btn {
+    padding: 8px 4px;
+    font-size: 0.75rem;
+    border-radius: 15px;
+    border: 1px solid #ccc;
+    background-color: #f5f8c8;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.category-btn:hover {
+    background-color: #e2e5b3; /* 버튼 호버 효과 추가 */
+}
+
+/* 지도 컨테이너 */
+.map-container {
+    height: 300px;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 25px;
+    border: 1px solid #ccc;
+}
+
+/* 실시간 피드 타이틀 */
+.feed-title {
+    text-align: left;
+    margin-left: 10px;
+}
+
+/* 리뷰 작성 Floating Action Button (FAB) */
+.fab-button {
+    position: fixed;
+    bottom: 30px;
+    right: 20px;
+    padding: 15px 25px;
+    background-color: #2db400;
+    color: white;
+    border-radius: 30px;
+    border: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 1000;
+    transition: transform 0.2s;
+}
+
+.fab-button:hover {
+    transform: scale(1.05); /* 버튼 호버 시 살짝 커지는 효과 추가 */
+}

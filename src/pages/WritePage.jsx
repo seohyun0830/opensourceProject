@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import './WritePage.css'; 
 import yellowStar from '../assets/노란별.png';
 import grayStar from '../assets/회색별.png';
+import StoreSelectModal from '../components/StoreSelectModal';
 
 function WritePage() {
   const navigate = useNavigate();
@@ -173,29 +174,11 @@ function WritePage() {
 
       <button className="submit-button" onClick={handleSubmit}>리뷰 등록하기</button>
 
-      {/* 가게 찾기 모달 */}
-      {isModalOpen && (
-        <div className="modal-overlay">
-          <div className="modal-content">
-            <h3>가게 선택하기</h3>
-            <ul className="store-list">
-              {storeList.map(store => (
-                <li 
-                  key={store.id} 
-                  className="store-item"
-                  onClick={() => {
-                    setSelectedStore(store);
-                    setIsModalOpen(false);
-                  }}
-                >
-                  {store.name}
-                </li>
-              ))}
-            </ul>
-            <button className="close-modal-button" onClick={() => setIsModalOpen(false)}>닫기</button>
-          </div>
-        </div>
-      )}
+      <StoreSelectModal 
+        isOpen={isModalOpen} 
+        onClose={() => setIsModalOpen(false)} 
+        onSelectStore={setSelectedStore} 
+      />
     </div>
   );
 }

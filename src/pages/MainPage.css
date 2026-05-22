@@ -63,6 +63,11 @@
     margin-left: 10px;
 }
 
+.map-review-section {
+    margin-bottom: 25px;
+    text-align: left;
+}
+
 /* 리뷰 작성 Floating Action Button (FAB) */
 .fab-button {
     position: fixed;

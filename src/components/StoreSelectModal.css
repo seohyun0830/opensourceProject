@@ -17,9 +17,45 @@
   padding: 20px;
   border-radius: 15px;
   width: 80%;
-  max-width: 400px;
+  max-width: 520px;
   max-height: 70%;
   overflow-y: auto;
+}
+
+.store-search-form {
+  display: flex;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.store-search-input {
+  flex: 1;
+  min-width: 0;
+  padding: 11px 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+
+.store-search-button {
+  padding: 0 16px;
+  border: none;
+  border-radius: 8px;
+  background-color: #2db400;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.store-search-button:disabled {
+  background-color: #9ccc8a;
+  cursor: default;
+}
+
+.store-search-message {
+  margin: 12px 0 0;
+  color: #666;
+  font-size: 0.9rem;
 }
 
 .store-list {
@@ -29,14 +65,31 @@
 }
 
 .store-item {
-  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 14px;
   border-bottom: 1px solid #eee;
   cursor: pointer;
-  text-align: center;
+  text-align: left;
 }
 
 .store-item:hover {
   background-color: #f9f9f9;
+}
+
+.store-item strong {
+  color: #222;
+}
+
+.store-item span {
+  color: #2db400;
+  font-size: 0.85rem;
+}
+
+.store-item small {
+  color: #777;
+  line-height: 1.35;
 }
 
 .close-modal-button {

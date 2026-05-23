@@ -12,7 +12,7 @@ function App() {
     <Router>
       <div className="App">
         <h1 style={{ textAlign: "center", color: "#2db400", margin: "20px 0" }}>
-          👑 대장님의 맛집 지도 👑
+          캠퍼스 맛집 지도
         </h1>
 
         <Routes>
@@ -41,6 +41,16 @@ function App() {
                 <Navigate to="/" replace />
               )
             } 
+          />
+          <Route
+            path="/write/:reviewId"
+            element={
+              isLoggedIn ? (
+                <WritePage />
+              ) : (
+                <Navigate to="/" replace />
+              )
+            }
           />
         </Routes>
       </div>

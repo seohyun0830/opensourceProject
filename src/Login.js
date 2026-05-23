@@ -18,16 +18,16 @@ function Login({ onLogin }) {
       <h2 style={{ textAlign: 'center' }}>입궁을 허락받으소서</h2>
       
       <form onSubmit={handleSubmit}>
-        <div style={{ marginBottom: '10px' }}>
+        <div style={{ marginBottom: "10px" }}>
           <label>아이디: </label>
           <input type="text" value={id} onChange={(e) => setId(e.target.value)} />
         </div>
-        <div style={{ marginBottom: '10px' }}>
+        <div style={{ marginBottom: "10px" }}>
           <label>비밀번호: </label>
           <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
         </div>
-        <button type="submit" style={{ width: '100%', padding: '10px', cursor: 'pointer', backgroundColor: '#2db400', color: 'white', border: 'none', borderRadius: '5px' }}>
-          입궁하기 (지도 보기)
+        <button type="submit" style={{ width: "100%", padding: "10px", cursor: "pointer", backgroundColor: "#2db400", color: "white", border: "none", borderRadius: "5px" }}>
+          로그인하고 지도 보기
         </button>
       </form>
 

@@ -1,18 +1,22 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // 마차를 불러옵니다!
 
-function Login({ onLogin }) {
-  const [id, setId] = useState("");
-  const [password, setPassword] = useState("");
+function Login({ onLogin }) { 
+  const [id, setId] = useState('');
+  const [password, setPassword] = useState('');
+  
+  const navigate = useNavigate(); // 마차 객체 생성
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    alert("환영합니다. 맛집 지도를 열어볼게요!");
-    onLogin();
+    e.preventDefault(); 
+    alert(`환영하옵니다 대장님! 맛집 지도를 펼치겠사옵니다!`);
+    onLogin(); 
   };
 
   return (
-    <div style={{ padding: "20px", border: "1px solid #ccc", borderRadius: "10px", maxWidth: "300px", margin: "20px auto" }}>
-      <h2 style={{ textAlign: "center" }}>로그인</h2>
+    <div style={{ padding: '20px', border: '1px solid #ccc', borderRadius: '10px', maxWidth: '300px', margin: '20px auto' }}>
+      <h2 style={{ textAlign: 'center' }}>입궁을 허락받으소서</h2>
+      
       <form onSubmit={handleSubmit}>
         <div style={{ marginBottom: "10px" }}>
           <label>아이디: </label>
@@ -26,7 +30,17 @@ function Login({ onLogin }) {
           로그인하고 지도 보기
         </button>
       </form>
-    </div>
+
+      <div style={{ marginTop: '15px', textAlign: 'center' }}>
+        {/* 이 버튼을 누르면 '/signup' 주소로 마차가 출발하옵니다! */}
+        <button 
+          onClick={() => navigate('/signup')} 
+          style={{ width: '100%', padding: '8px', cursor: 'pointer', backgroundColor: '#f1f3f5', border: '1px solid #ccc', borderRadius: '5px' }}
+        >
+          회원가입하러 가기
+        </button>
+      </div>
+    </div> 
   );
 }
 

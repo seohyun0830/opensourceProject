@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gaegu:wght@700&display=swap');
 
 .App {
   font-family: 'Gaegu', 'Apple SD Gothic Neo', sans-serif;
@@ -8,10 +8,12 @@
 
 .main-title {
   text-align: center;
-  color: #dc143c; 
   margin: 0;
   padding: 40px 0 20px 0;
-  font-size: 2.8rem;
+  font-size: 3.2rem; 
   font-weight: 700;
   letter-spacing: -0.5px;
+  
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 2px #dc143c;
 }

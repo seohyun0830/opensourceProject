@@ -44,7 +44,7 @@ function Login({ onLogin }) {
       
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label>이메일 아이디: </label>
+          <label>이메일: </label>
           <input 
             type="email" 
             placeholder="example@email.com"

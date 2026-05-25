@@ -10,7 +10,7 @@ import {
   query,
   where,
 } from "firebase/firestore";
-import { db } from "../firebase";
+import { auth,db } from "../firebase";
 import KakaoMap from "../KakaoMap";
 import ReviewCard from "../components/ReviewCard";
 import "./MainPage.css";
@@ -47,29 +47,37 @@ function MainPage() {
   const [mapClearSignal, setMapClearSignal] = useState(0);
 
   useEffect(() => {
-    const reviewsQuery = query(collection(db, "reviews"), orderBy("createdAt", "desc"));
+  const reviewsQuery = query(collection(db, "reviews"), orderBy("createdAt", "desc"));
 
-    const unsubscribe = onSnapshot(
-      reviewsQuery,
-      (snapshot) => {
-        const nextReviews = snapshot.docs.map((reviewDoc) => ({
+  const unsubscribe = onSnapshot(
+    reviewsQuery,
+    (snapshot) => {
+      // 2. 현재 로그인한 유저의 uid 가져오기
+      const currentUser = auth.currentUser;
+
+      const nextReviews = snapshot.docs.map((reviewDoc) => {
+        const data = reviewDoc.data();
+        
+        return {
           Reviewid: reviewDoc.id,
           reviewDocId: reviewDoc.id,
-          isMine: true,
-          ...reviewDoc.data(),
-        }));
+          // 3. 리뷰의 작성자 ID(data.userId)가 현재 로그인한 유저의 ID와 같을 때만 true가 됩니다.
+          isMine: currentUser && data.userId === currentUser.uid, 
+          ...data,
+        };
+      });
 
-        setReviews(nextReviews);
-        setIsLoading(false);
-      },
-      () => {
-        setIsLoading(false);
-        alert("리뷰를 불러올 수 없습니다");
-      }
-    );
+      setReviews(nextReviews);
+      setIsLoading(false);
+    },
+    () => {
+      setIsLoading(false);
+      alert("리뷰를 불러올 수 없습니다");
+    }
+  );
 
-    return unsubscribe;
-  }, []);
+  return unsubscribe;
+}, []);
 
   const deletePlaceIfUnused = async (placeId) => {
     if (!placeId) return;

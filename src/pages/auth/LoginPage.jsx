@@ -4,7 +4,7 @@ import { auth } from '../../firebase';
 import { signInWithEmailAndPassword } from 'firebase/auth'; 
 import './LoginPage.css'; 
 
-function Login({ onLogin }) { 
+function Login() { 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   
@@ -15,12 +15,8 @@ function Login({ onLogin }) {
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      
       alert("로그인에 성공했습니다! 맛집 지도를 불러옵니다.");
-      onLogin(); 
-      
       navigate('/'); 
-      
     } catch (error) {
       console.error("로그인 에러 발생:", error);
       
@@ -68,8 +64,18 @@ function Login({ onLogin }) {
         </button>
       </form>
 
-      <div className="signup-link-container">
+      {/* 2개의 하단 이동 버튼 섹션 */}
+      <div className="action-links-container" style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginTop: '15px' }}>
         <button 
+          className="btn-guest-map"
+          type="button"
+          onClick={() => navigate('/')} 
+        >
+          로그인하지 않고 지도 보기
+        </button>
+
+        <button 
+          type="button"
           onClick={() => navigate('/signup')} 
           className="btn-go-signup"
         >

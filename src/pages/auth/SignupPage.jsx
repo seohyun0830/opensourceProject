@@ -1,18 +1,25 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; 
 import { auth } from '../../firebase';
-import { createUserWithEmailAndPassword } from 'firebase/auth'; 
+import { createUserWithEmailAndPassword,updateProfile } from 'firebase/auth'; 
 import './SignupPage.css'; 
 
 function Signup() {
   const [email, setEmail] = useState('');
+  const [displayName, setDisplayName] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
   
   const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
+
+const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!displayName.trim()) {
+      alert("이름을 입력해 주세요!");
+      return;
+    }
 
     if (password !== passwordConfirm) {
       alert("입력한 비밀번호가 서로 일치하지 않습니다!");
@@ -20,9 +27,16 @@ function Signup() {
     }
 
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
+      // 1. 계정 생성 완료될 때까지 대기
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       
-      alert(`회원가입이 완료되었습니다!`);
+      await updateProfile(userCredential.user, {
+        displayName: displayName,
+      });
+
+      await userCredential.user.reload();
+      
+      alert(`회원가입이 완료되었습니다! 반갑습니다, ${displayName}님.`);
       navigate('/'); 
       
     } catch (error) {
@@ -39,7 +53,7 @@ function Signup() {
       }
     }
   };
-
+  
   return (
     <div className="signup-container">
       <h2 className="signup-title">회원가입</h2>
@@ -52,6 +66,17 @@ function Signup() {
             placeholder="example@email.com"
             value={email} 
             onChange={(e) => setEmail(e.target.value)} 
+            required 
+          />
+        </div>
+
+        <div className="form-group">
+          <label>이름: </label>
+          <input 
+            type="text" 
+            placeholder="이름을 입력해 주세요"
+            value={displayName} 
+            onChange={(e) => setDisplayName(e.target.value)} 
             required 
           />
         </div>

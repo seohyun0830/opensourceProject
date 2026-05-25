@@ -1,90 +1,215 @@
-/* 전체 컨테이너 */
+
 .main-container {
-    padding: 20px;
-    background-color: #F5F5F5;
-    min-height: 100vh;
-    text-align: center;
-    position: relative; /* FAB(플로팅버튼) 기준점 유지를 위해 권장 */
+  padding: 20px;
+  background-color: #fafafa; 
+  min-height: 100vh;
+  text-align: center;
+  position: relative;
 }
 
-/* 헤더 제목 */
+
 .main-title {
-    text-align: center;
-    color: #2db400;
-    margin-bottom: 20px;
+  text-align: center;
+  color: #dc143c; 
+  margin-bottom: 20px;
+  font-weight: 800;
 }
 
-/* 검색창 컨테이너 및 인풋 */
 .search-container {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
 .search-input {
-    width: 90%;
-    padding: 12px;
-    border-radius: 25px;
-    border: 1px solid #000;
+  width: 90%;
+  padding: 12px 20px;
+  border-radius: 25px;
+  border: 1.5px solid #e2e8f0;
+  background-color: #f8fafc;
+  font-size: 0.95rem;
+  box-sizing: border-box;
+  transition: all 0.2s ease;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #dc143c;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(220, 20, 60, 0.12);
 }
 
 /* 카테고리 그리드 및 버튼 */
 .category-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
-    margin-bottom: 20px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); 
+  gap: 8px;
+  margin-bottom: 20px;
 }
 
 .category-btn {
-    padding: 8px 4px;
-    font-size: 0.75rem;
-    border-radius: 15px;
-    border: 1px solid #ccc;
-    background-color: #f5f8c8;
-    cursor: pointer;
-    transition: background-color 0.2s;
+  padding: 10px 4px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border-radius: 14px;
+  border: 1px solid #f3e8eb;
+  background-color: #fff5f6; 
+  color: #555555;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 .category-btn:hover {
-    background-color: #e2e5b3; /* 버튼 호버 효과 추가 */
+  background-color: #fde8eb;
+  color: #dc143c;
+  border-color: #fbc6ce;
+}
+
+/* 카테고리 활성화(선택) 상태 */
+.category-btn.active {
+  background-color: #dc143c;
+  color: white;
+  border-color: #dc143c;
+  font-weight: 700;
+  box-shadow: 0 4px 10px rgba(220, 20, 60, 0.15);
 }
 
 /* 지도 컨테이너 */
 .map-container {
-    height: 300px;
-    border-radius: 12px;
-    overflow: hidden;
-    margin-bottom: 25px;
-    border: 1px solid #ccc;
+  height: 350px; /* 지도를 조금 더 시원하게 볼 수 있도록 높이 소폭 확장 */
+  border-radius: 18px;
+  overflow: hidden;
+  margin-bottom: 25px;
+  border: 2px solid #fbebeb; 
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
 }
 
 /* 실시간 피드 타이틀 */
 .feed-title {
-    text-align: left;
-    margin-left: 10px;
+  text-align: left;
+  margin-left: 10px;
+  color: #1e293b;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
 }
 
 .map-review-section {
-    margin-bottom: 25px;
-    text-align: left;
+  margin-bottom: 25px;
+  text-align: left;
 }
 
 /* 리뷰 작성 Floating Action Button (FAB) */
 .fab-button {
-    position: fixed;
-    bottom: 30px;
-    right: 20px;
-    padding: 15px 25px;
-    background-color: #2db400;
-    color: white;
-    border-radius: 30px;
-    border: none;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    font-weight: bold;
-    cursor: pointer;
-    z-index: 1000;
-    transition: transform 0.2s;
+  position: fixed;
+  bottom: 30px;
+  right: 20px;
+  padding: 14px 24px;
+  background-color: #dc143c; 
+  color: white;
+  border-radius: 30px;
+  border: none;
+  box-shadow: 0 4px 14px rgba(220, 20, 60, 0.35); 
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  z-index: 1000;
+  transition: all 0.2s ease;
 }
 
 .fab-button:hover {
-    transform: scale(1.05); /* 버튼 호버 시 살짝 커지는 효과 추가 */
+  background-color: #b00f30;
+  transform: translateY(-3px) scale(1.03); /* 위로 살짝 뜨면서 커지는 입체감 추가 */
+  box-shadow: 0 6px 20px rgba(220, 20, 60, 0.45);
+}
+
+.fab-button:active {
+  transform: translateY(0) scale(1);
+}
+
+/* 메시지 스타일링 보완 */
+.loading-message, .empty-message {
+  padding: 40px;
+  color: #64748b;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+/* 상단 헤더 바 */
+.main-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 10px;
+  background-color: #ffffff;
+  border-bottom: 2px solid #fbebeb;
+  border-radius: 16px;
+  margin-bottom: 25px;
+  box-shadow: 0 4px 12px rgba(220, 20, 60, 0.02);
+}
+
+/* 헤더 로고 */
+.header-logo {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #dc143c; /* 🔴 크림슨 레드 적용 */
+  letter-spacing: -0.5px;
+  padding-left: 5px;
+}
+
+/* 상단바 버튼 그룹 */
+.header-nav {
+  display: flex;
+  gap: 8px;
+}
+
+/* 상단바 기본 버튼 스타일 */
+.main-header .nav-btn {
+  padding: 8px 14px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  background-color: #f8fafc;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.main-header .nav-btn:hover {
+  background-color: #f1f5f9;
+  color: #1e293b;
+}
+
+/* 내가 쓴 리뷰 활성화 상태 */
+.main-header .nav-btn.active {
+  background-color: #dc143c;
+  color: white;
+  border-color: #dc143c;
+}
+
+/* 로그인 버튼 */
+.main-header .login-btn {
+  background-color: #ffffff;
+  border-color: #dc143c;
+  color: #dc143c;
+}
+
+.main-header .login-btn:hover {
+  background-color: #fff5f6;
+  color: #b00f30;
+  border-color: #b00f30;
+}
+
+/* 로그아웃 버튼 */
+.main-header .logout-btn {
+  background-color: #f1f5f9;
+  color: #64748b;
+  border: none;
+}
+
+.main-header .logout-btn:hover {
+  background-color: #e2e8f0;
+  color: #334155;
 }

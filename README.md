@@ -94,3 +94,8 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
     : 검색 기능 구현
 - 구현 예정 및 구현 필요
     : 검색 시, 지도에서 해당 가게 마커로 표시
+
+2026-05-31 PM 13:40 윤진
+- 디자인 통일
+    : 리뷰 등록 및 기본 화면, 태그 색 통일
+    : 기본 화면 별 모양 수정

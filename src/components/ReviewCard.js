@@ -19,8 +19,8 @@ const ReviewCard = ({
   const tagStyle = {
     marginRight: "5px",
     fontSize: "0.75rem",
-    color: "#2E7D32",
-    backgroundColor: "#F1F8E9",
+    color: "#dc143c",
+    backgroundColor: "#fbf3f4",
     padding: "2px 6px",
     borderRadius: "4px",
     display: "inline-block",
@@ -56,7 +56,7 @@ const ReviewCard = ({
         <div style={{ paddingRight: isMine ? "84px" : 0 }}>
           <h4 style={{ margin: "0 0 5px 0", color: "#333" }}>{storeName}</h4>
 
-          <p style={{ margin: "0", fontSize: "0.9rem" }}>평점: {"★".repeat(rating)}</p>
+          <p style={{ margin: "0", fontSize: "0.9rem" }}>평점: {"⭐️".repeat(rating)}</p>
 
           <p style={{ margin: "5px 0", fontSize: "0.9rem", color: "#555", lineHeight: "1.4" }}>
             {reviewText}
@@ -121,7 +121,7 @@ const ReviewCard = ({
               style={{
                 backgroundColor: "transparent",
                 border: "none",
-                color: "#2db400",
+                color: "#4e4e4e",
                 cursor: "pointer",
                 fontSize: "0.8rem",
                 fontWeight: "bold",
@@ -138,7 +138,7 @@ const ReviewCard = ({
               style={{
                 backgroundColor: "transparent",
                 border: "none",
-                color: "#ff4d4f",
+                color: "#dc143c",
                 cursor: "pointer",
                 fontSize: "0.8rem",
                 fontWeight: "bold",

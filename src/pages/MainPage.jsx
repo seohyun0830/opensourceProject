@@ -137,8 +137,6 @@ function MainPage() {
     return matchesMyReview && matchesCategory && matchesSearch;
   });
 
-  const mapReviews = selectedMapPlace ? reviews : filteredReviews;
-
   const selectedPlaceReviews = selectedMapPlace
     ? reviews.filter((review) => {
         const place = selectedMapPlace.place;
@@ -148,6 +146,8 @@ function MainPage() {
       })
     : [];
 
+  const mapReviews = selectedMapPlace ? selectedPlaceReviews : filteredReviews;  
+  
   const handleSelectMapPlace = (selection) => {
     setSelectedMapPlace(selection);
     if (!selection) {
@@ -168,6 +168,20 @@ function MainPage() {
     } else {
       navigate("/write");
     }
+  };
+
+  const handleReviewClick = (review) => {
+    const mockSelection = {
+      place: {
+        id: review.placeId,
+        kakaoPlaceId: review.kakaoPlaceId,
+        name: review.storeName,
+      }
+    };
+    
+    setSelectedMapPlace(mockSelection);
+
+    window.scrollTo({ top: 150, behavior: "smooth" });
   };
 
   return (
@@ -263,13 +277,18 @@ function MainPage() {
             <div className="review-feed">
               {filteredReviews.length > 0 ? (
                 filteredReviews.map((review) => (
-                  <ReviewCard
-                    key={review.Reviewid}
-                    {...review}
-                    isDeleting={deletingId === review.Reviewid}
-                    onDelete={() => handleDeleteReview(review.Reviewid)}
-                    onEdit={() => navigate(`/write/${review.Reviewid}`)}
-                  />
+                  <div 
+                    key={review.Reviewid} 
+                    onClick={() => handleReviewClick(review)}
+                    style={{ cursor: "pointer" }}
+                  >
+                    <ReviewCard
+                      {...review}
+                      isDeleting={deletingId === review.Reviewid}
+                      onDelete={() => handleDeleteReview(review.Reviewid)}
+                      onEdit={() => navigate(`/write/${review.Reviewid}`)}
+                    />
+                  </div>
                 ))
               ) : (
                 <div className="empty-message">등록된 리뷰가 없습니다.</div>

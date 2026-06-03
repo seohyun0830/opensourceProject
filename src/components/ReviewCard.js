@@ -12,9 +12,24 @@ const ReviewCard = ({
   onEdit,
   isDeleting,
   isMine,
+  createdAt,
 }) => {
   const [selectedImage, setSelectedImage] = useState(null);
   const reviewImages = Array.isArray(images) && images.length > 0 ? images : image ? [{ url: image }] : [];
+
+  const formatDate = (timestamp) => {
+    if (!timestamp) return "";
+    
+    const date = timestamp.toDate ? timestamp.toDate() : new Date(timestamp);
+    
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+    const hours = String(date.getHours()).padStart(2, "0");
+    const minutes = String(date.getMinutes()).padStart(2, "0");
+    
+    return `${year}.${month}.${day}`;
+  };
 
   const tagStyle = {
     marginRight: "5px",
@@ -51,6 +66,8 @@ const ReviewCard = ({
           transform: isDeleting ? "scale(0.98)" : "scale(1)",
           transition: "all 0.3s ease",
           textAlign: "left",
+          display: "flex",       // 내부 요소를 유연하게 배치하기 위해 추가
+          flexDirection: "column" // 위에서 아래로 쌓이도록 설정
         }}
       >
         <div style={{ paddingRight: isMine ? "84px" : 0 }}>
@@ -100,6 +117,14 @@ const ReviewCard = ({
                 />
               </button>
             ))}
+          </div>
+        )}
+
+        {createdAt && (
+          <div style={{ textAlign: "right", marginTop: "-10px", paddingTop: "0px" }}>
+            <span style={{ fontSize: "0.75rem", color: "#999" }}>
+              {formatDate(createdAt)}
+            </span>
           </div>
         )}
 

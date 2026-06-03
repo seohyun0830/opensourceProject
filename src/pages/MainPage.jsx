@@ -137,6 +137,16 @@ function MainPage() {
     return matchesMyReview && matchesCategory && matchesSearch;
   });
 
+  const calculateAverageRating = (reviewsList) => {
+    if (!reviewsList || reviewsList.length === 0) return 0;
+    
+    // rating이 없는 예전 데이터는 0점 처리 혹은 제외할 수 있습니다. (여기서는 0점 처리)
+    const totalScore = reviewsList.reduce((sum, review) => sum + (review.rating || 0), 0);
+    
+    // 소수점 첫째 자리까지 표시 (예: 4.5)
+    return (totalScore / reviewsList.length).toFixed(1); 
+  };
+
   const selectedPlaceReviews = selectedMapPlace
     ? reviews.filter((review) => {
         const place = selectedMapPlace.place;
@@ -243,7 +253,11 @@ function MainPage() {
 
       {selectedMapPlace && selectedPlaceReviews.length > 0 && (
         <div className="map-review-section">
-          <h3 className="feed-title">{selectedMapPlace.place.name} 리뷰</h3>
+          <h3 className="feed-title">{selectedMapPlace.place.name} 리뷰
+            <span style={{ fontSize: "1.2rem", color: "#ffc107", marginLeft: "10px" }}>
+              ⭐ {calculateAverageRating(selectedPlaceReviews)}
+            </span>
+          </h3>
           <div className="review-feed">
             {selectedPlaceReviews.map((review) => (
               <ReviewCard

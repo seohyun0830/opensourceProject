@@ -57,7 +57,7 @@
 `npm start`
 개발 모드에서 앱을 실행합니다.
 
-http://localhost:3000을 열어 브라우저에서 확인할 수 있습니다. 코드를 수정하면 페이지가 자동으로 새로고침됩니다.
+https://opensource-316fc.web.app/을 열어 브라우저에서 확인할 수 있습니다. 
 
 `npm run build`
 프로덕션 환경을 위해 앱을 build 폴더에 빌드합니다.

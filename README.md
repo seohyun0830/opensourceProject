@@ -3,14 +3,8 @@
 세종대 학생들을 위한 지도 기반 맛집 리뷰 서비스입니다.
 원하는 상황(가성비, 혼밥, 카공 등)에 맞는 맛집을 지도상에서 직관적으로 탐색하고, 자신만의 생생한 리뷰를 남길 수 있습니다.
 
-**🔗 [Live Demo 보러가기](https://opensource-316fc.web.app/)**
-| 기본 화면 | 리뷰작성 화면 |
-| :---: | :---: |
-| <img src="image.png" width="300" /> | <img src="image-1.png" width="300" /> |
 
----
-
-## Tech Stack
+## 기술 스택
 
 - **Frontend**: React, React-Router-DOM
 - **Backend/BaaS**: Firebase (Authentication, Firestore, Hosting)
@@ -18,7 +12,7 @@
 
 ---
 
-## Key Features & Technical Details
+## 주요 기능 및 기술적 세부 사항
 
 ### 1. 인증 및 회원 관리 (Firebase Auth)
 
@@ -30,6 +24,10 @@
 
 - **동적 상태 제어**: 부모 컴포넌트로부터 `isOpen`, `onClose` 상태를 Props로 전달받아 모달창의 개폐를 유연하고 독립적으로 제어합니다.
 - **UX 최적화 및 중복 요청 방지**: API 검색이 진행 중일 때는 찾기 버튼을 비활성화(`disabled={isSearching}`)하고 안내 문구를 변경하여, 유저의 중복 클릭 및 연타로 인한 불필요한 서버 과부하를 원천 차단했습니다.
+- **비동기 SDK 로드 및 안정적인 에러 핸들링**: 모달이 실행된 후 카카오 맵 SDK를 동적으로 로드(loadKakaoMapSdk)하며, 키 오류나 네트워크 문제로 로드 실패 시 유저에게 명확한 안내 메시지를 제공합니다.
+검색 결과가 없거나(ZERO_RESULT), 시스템 에러 발생 시 예외 처리를 세분화하여 컴포넌트의 안정성을 높였습니다.
+- **데이터 정규화**:
+카카오 API가 제공하는 응답 데이터 중 필요한 정보(id, name, category, address, phone, 위경도 좌표 등)만 추출하고 가공하여 일관된 객체 인터페이스로 매핑 후 사용합니다.
 
 ### 3. 리뷰 작성/수정 및 데이터 최적화 (Custom Hook: `useReviewSubmit`)
 
@@ -40,24 +38,32 @@
 
 ---
 
-## 🚀 Getting Started
+## 실행 방법
 
 이 프로젝트는 [Create React App](https://github.com/facebook/create-react-app)으로 부트스트랩 되었습니다.
 
-### Prerequisites
-
-로컬 환경에서 프로젝트를 실행하기 위해 필요한 패키지를 설치합니다.
-
+1. 로컬 환경에서 프로젝트를 실행하기 위해 프로젝트를 클론합니다.
+2. 프로젝트에 필요한 라이브러리를 설치합니다.
     npm install
-
-### Available Scripts
+3. 환경 변수 설정 (.env 파일 생성)
+   프로젝트 루트 디렉토리에 `.env`파일 생성하고, 전달해 드린 API키 정보를 아래와 같이 입력해주세요.
+   ```env
+    # 카카오 맵 API 키
+    REACT_APP_KAKAO_JAVASCRIPT_KEY=전달받은_카카오_자바스크립트_키
+    # 이미지 API 키
+    REACT_APP_IMGBB_API_KEY=전달받은_이미지_키
+   
+### 실행 스크립트 명령어
 
 프로젝트 디렉토리 내에서 다음 명령어들을 사용할 수 있습니다:
 
 `npm start`
 개발 모드에서 앱을 실행합니다.
 
-https://opensource-316fc.web.app/을 열어 브라우저에서 확인할 수 있습니다. 
+## 배포 링크 (권장)
 
-`npm run build`
-프로덕션 환경을 위해 앱을 build 폴더에 빌드합니다.
+> **채점자 안내 사항:** 
+> 로컬 환경에서의 의존성 설치 및 API 환경 변수 설정 번거로움을 최소화하기 위해 **서버에 실시간 배포본을 구축 완료**했습니다. 
+> 채점 시 가급적 아래 배포 링크를 통해 접속하시면 추가 설정 없이 모든 기능(카카오 맵 API, 파이어베이스 DB 연동 등)을 즉시 확인하실 수 있어 이를 적극 권장합니다.
+
+* **실시간 배포 사이트:** [https://opensource-316fc.web.app/]

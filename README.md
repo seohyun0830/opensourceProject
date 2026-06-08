@@ -8,7 +8,7 @@
 
 - **Frontend**: React, React-Router-DOM
 - **Backend/BaaS**: Firebase (Authentication, Firestore, Hosting)
-- **Map API**: Naver Maps API v3
+- **Map API**: Kakao Maps API
 
 ---
 
